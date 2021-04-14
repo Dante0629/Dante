@@ -6,12 +6,7 @@ module.exports = (client) => {
 
 client.on('guildMemberAdd', async(member, message) => {
     const Channel = member.guild.channels.cache.get('831457489186455562') 
-        const status = {
-            online: '🟢',
-            idle: '🟡',
-            dnd: '🔴 Ne zavarj',
-            offline: '⚫'
-        }
+
     
     const embed = new MessageEmbed()
         .setColor('RED')
@@ -23,16 +18,16 @@ client.on('guildMemberAdd', async(member, message) => {
                 value: `${member.user.tag}`
             },
             {
+                name: `**Tag ID-ja:**`,
+                value: `${member.id}`
+            },
+            {
                 name: `**Csatlakozás dátuma:**`,
                 value: new Date(member.joinedTimestamp).toLocaleDateString()
             },
             {
                 name: `**Account létrehozásának a dátuma:**`,
                 value: `${moment.utc(member.user.createdAt).format('LLLL')}`
-            },
-            {
-                name: `**Állapota:**`,
-                value: `${status[member.presence.status]}`
             }
             )
         .setTimestamp()
